@@ -22,11 +22,11 @@ node {
   sh("stack setup")
 
   stage 'Build project'
-  withEnv(["bin"]) {
+  withEnv(["PATH='bin:$PATH'"]) {
     sh("stack build")
   }
   stage 'Run tests'
-  withEnv(["bin"]){
+  withEnv(["PATH='bin:$PATH'"]){
    sh("stack test")
   }
 
