@@ -17,18 +17,16 @@ node {
   stage 'Install protoc'
   sh("wget https://github.com/google/protobuf/releases/download/v${protocVersion}/${protoc}-linux-x86_64.zip")
   sh("unzip ${protoc}-linux-x86_64.zip")
+  sh("mv bin/protoc /use/bin/protoc")
 
   stage 'Install GHC'
   sh("stack setup")
 
   stage 'Build project'
-  withEnv(["PATH='bin:$PATH'"]) {
-    sh("stack build")
-  }
+  sh("stack build")
+
   stage 'Run tests'
-  withEnv(["PATH='bin:$PATH'"]){
-   sh("stack test")
-  }
+  sh("stack test")
 
   stage 'Create docker image'
   sh("stack image container")
