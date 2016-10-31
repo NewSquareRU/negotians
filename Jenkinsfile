@@ -1,9 +1,10 @@
 node {
   def project = 'pinacta'
-  def projectId = '147615'
+  def projectId = '148109'
   def appName = 'negotians'
   def feSvcName = "${appName}"
-  def imageTag = "gcr.io/${project}-${projectId}/${appName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+  def version = sh(script: "cat *.cabal | grep '^version:' | sed 's/[[:alpha:][:space:]|:]//g'", returnStdout: true)
+  def imageTag = "gcr.io/${project}-${projectId}/${appName}:${version}"
   def protocVersion = "3.1.0"
   def protoc = "protoc-${protocVersion}"
 
