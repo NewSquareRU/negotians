@@ -1,4 +1,8 @@
 flags: {}
+image:
+  container:
+    base: fpco/stack-run
+    name: pinacta/negotians
 extra-package-dbs: []
 packages:
 - '.'
@@ -8,22 +12,28 @@ packages:
 - location:
     git: https://github.com/dp-cylme/wai-logging-effect-google.git
     commit: 83ea8d27aba804de166ef16bbd548ce82c6cfa8b
+- location:
+    git: https://github.com/brendanhay/gogol.git
+    commit: c744fee403bbe7bbdadcf3fa67037ba11004f359
+  subdirs:
+  - gogol
 extra-deps:
-- aeson-1.0.1.0
+- aeson-1.0.2.1
 - data-default-0.6.0
 - data-default-class-0.0.1
 - data-default-instances-base-0.1.0
-- fast-logger-2.4.7
+- hspec-2.3.2
+- hspec-core-2.3.2
+- hspec-discover-2.3.2
+- hspec-expectations-0.8.2
+- http-client-0.5.3.3
+- http-client-tls-0.3.3
+- http-conduit-2.2.3
 - logging-effect-1.1.0
+- optparse-generic-1.1.3
 - proto-lens-0.1.0.2
 - proto-lens-arbitrary-0.1.0.1
 - proto-lens-protoc-0.1.0.2
-- wai-extra-3.0.18
 explicit-setup-deps:
   ! '*': true
-resolver: lts-7.0
-
-image:
-  container:
-    name: pinacta/negotians
-    base: fpco/stack-run
+resolver: lts-7.6
